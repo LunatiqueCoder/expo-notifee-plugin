@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-notifee-remote-plugin": ["../src/index"],
+      "expo-notifee-remote-plugin/*": ["../src/*"]
+    }
+  }
+}

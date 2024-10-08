@@ -1,0 +1,42 @@
+{
+  "name": "expo-notifee-remote-plugin",
+  "version": "0.1.0",
+  "description": "Plugin to create a Notification Service extension in order to let Notifee mutate remote notifications",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "xed example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-notifee-remote-plugin",
+    "ExpoNotifeeRemoteNSE"
+  ],
+  "repository": "https://github.com/LunatiqueCoder/expo-notifee-remote-plugin",
+  "bugs": {
+    "url": "https://github.com/LunatiqueCoder/expo-notifee-remote-plugin/issues"
+  },
+  "author": "Ovidiu Cristescu <ovidiucristescu@software-space.com> (https://github.com/LunatiqueCoder)",
+  "license": "MIT",
+  "homepage": "https://github.com/LunatiqueCoder/expo-notifee-remote-plugin#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.5.2",
+    "expo-modules-core": "^1.12.24"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
