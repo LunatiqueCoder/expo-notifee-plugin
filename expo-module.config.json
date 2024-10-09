@@ -1,9 +1,0 @@
-{
-  "platforms": ["ios", "tvos", "android", "web"],
-  "ios": {
-    "modules": ["ExpoNotifeeRemoteNSEModule"]
-  },
-  "android": {
-    "modules": ["expo.modules.notifeeremoteplugin.ExpoNotifeeRemoteNSEModule"]
-  }
-}
