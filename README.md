@@ -44,7 +44,7 @@ npm install --save expo-notifee-remote-plugin
 3. Run `yarn ios`
 
 
-### TypeScript
+### Types
 
 If you use [`app.config.ts`](https://docs.expo.dev/workflow/configuration/#using-typescript-for-configuration-appconfigts-instead-of-appconfigjs) for example:
 
@@ -54,7 +54,25 @@ import { ExpoConfig } from 'expo/config';
 import { TExpoNotifeeRemote } from 'expo-notifee-remote-plugin';
 
 const notifeeOptions: TExpoNotifeeRemote = {
-  developmentTeam: 'ZU3XS69AB9',
+  /**
+   * Apple App Group if applicable.
+   * @link https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups
+   */
+  appGroup?: string;
+  /** Custom target name of the NotificationServiceExtension
+   * @default NotifeeNotificationService
+   */
+  appTarget?: string;
+  developmentTeam: string;
+  /**
+   * An array containing the sound file names (including file extensions)
+   * @example soundFiles: ['dm.aiff']
+   * */
+  soundFiles?: string[];
+  /** Path of the folder that contains the sound. Relative to the app.config.js file.
+   * @example soundFilesPath: 'assets/audio'
+   */
+  soundFilesPath?: string;
 };
 
 export const plugins: ExpoConfig['plugins'] = [
@@ -73,11 +91,10 @@ Example with Firebase Node SDK:
 
 
 ```ts
-import type {NextApiRequest, NextApiResponse} from 'next';
-import admin from '../../../../firebase-admin';
 import type {Notification} from '@notifee/react-native/src/types/Notification';
 import {AndroidImportance} from '@notifee/react-native/src/types/NotificationAndroid';
 import {MulticastMessage} from 'firebase-admin/lib/messaging/messaging-api';
+import admin from '../src/firebase-admin';
 
 /**
  * @link https://notifee.app/react-native/reference/notification
@@ -137,14 +154,12 @@ const message: MulticastMessage = {
   },
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    admin.messaging().sendEachForMulticast(message)
-    res.status(200).end();
-  } catch (e) {
-    res.status(400).end();
-  }
-};
+try {
+  admin.messaging().sendEachForMulticast(message)
+  res.status(200).end();
+} catch (e) {
+  res.status(400).end();
+}
 ```
 
 ## 🤔 What it does?
