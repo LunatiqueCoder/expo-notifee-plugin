@@ -6,8 +6,8 @@
 [![GitHub][9]][10]
 [![npm][13]][14]
 
-# 🖲 `expo-notifee-remote-plugin`
-### `expo-notifee-remote-plugin` is an Expo plugin that configures a NotificationServiceExtension to use Notifee for remote notifications
+# 🖲 expo-notifee-remote-plugin
+### Expo plugin that configures a Notification Service Extension to use Notifee for remote notifications
 
 > 📖 Please visit the [`Notifee's Docs: Remote Notification Support`][20] to see what this plugin does behind the scenes 
 
@@ -188,6 +188,7 @@ Adapted from:
 
 - https://github.com/OneSignal/onesignal-expo-plugin/blob/main/onesignal/withOneSignalIos.ts
 - https://github.com/bluesky-social/social-app/tree/main/plugins/notificationsExtension
+- https://github.com/evennit/notifee-expo-plugin
 
 - https://github.com/andrew-levy/react-native-safari-extension
 - https://github.com/timedtext/expo-config-plugin-ios-share-extension/blob/master/src/withShareExtensionXcodeTarget.ts
