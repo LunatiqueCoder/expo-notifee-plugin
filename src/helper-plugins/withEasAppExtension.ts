@@ -19,7 +19,7 @@ const withEasAppExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGrou
   };
 
   if (appGroup) {
-    expoAppExtension.entitlements[APPLE_APP_GROUP_SECURITY] = appGroup;
+    expoAppExtension.entitlements[APPLE_APP_GROUP_SECURITY] = [appGroup];
   }
 
   return {

@@ -17,7 +17,7 @@ const withExtensionEntitlements: ConfigPlugin<TExpoNotifeeRemote> = (config, { a
     const notificationsExtensionEntitlements = {};
 
     if (appGroup) {
-      notificationsExtensionEntitlements[APPLE_APP_GROUP_SECURITY] = appGroup;
+      notificationsExtensionEntitlements[APPLE_APP_GROUP_SECURITY] = [appGroup];
     }
 
     fs.mkdirSync(path.dirname(extensionEntitlementsPath), {

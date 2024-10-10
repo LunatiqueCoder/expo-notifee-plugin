@@ -3,7 +3,7 @@ import { ConfigPlugin, withPlugins } from '@expo/config-plugins';
 import { EXTENSION_CONTROLLER_NAME } from './constants';
 import {
   withAppEntitlements,
-  // withEasAppExtension,
+  withEasAppExtension,
   withExtensionEntitlements,
   withExtensionInfoPlist,
   withExtensionViewController,
@@ -45,7 +45,7 @@ const withNotificationsExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, pa
   return withPlugins(config, [
     // IOS
     [withAppEntitlements, guardedParams],
-    // [withEasAppExtension, guardedParams],
+    [withEasAppExtension, guardedParams],
     [withExtensionEntitlements, guardedParams],
     [withExtensionInfoPlist, guardedParams],
     [withExtensionViewController, guardedParams],
