@@ -1,14 +1,11 @@
-# Notifee Remote NotificationServiceExtension plugin for Expo
+# 🖲 expo-notifee-remote-plugin
 
 [![Expo][34]][35]
 ![platforms][7]
-[![GitHub top language][31]][32]
 [![GitHub][9]][10]
 [![npm][13]][14]
 
-# 🖲 expo-notifee-remote-plugin
 ### Expo plugin that configures a Notification Service Extension to use Notifee for remote notifications
-
 > 📖 Please visit the [`Notifee's Docs: Remote Notification Support`][20] to see what this plugin does behind the scenes 
 
 ##  🔧 Installation
@@ -206,8 +203,6 @@ Adapted from:
 [13]: https://img.shields.io/npm/v/expo-notifee-remote-plugin
 [14]: https://www.npmjs.com/package/expo-notifee-remote-plugin
 [28]: https://www.jetbrains.com/
-[31]: https://img.shields.io/github/languages/top/LunatiqueCoder/expo-notifee-remote-plugin
-[32]: https://github.com/LunatiqueCoder/expo-notifee-remote-plugin/search?l=typescript
 [33]: https://user-images.githubusercontent.com/55203625/213786907-b95dfb4b-08bf-4449-a055-72edf401da23.png
 [34]: https://img.shields.io/badge/-Expo-282C34?style=flat-square&logo=expo&logoColor=#D04A37
 [35]: https://expo.dev/
