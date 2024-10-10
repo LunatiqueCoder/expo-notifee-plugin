@@ -172,6 +172,9 @@ This plugin handles moving the necessary NotifeeNSE files into their respective 
 6. Adds the sounds (if any) in the iOS project
 7. Updates the xcode project's build phases
 
+## 🪲 Debugging
+- Notifee issues: https://github.com/invertase/notifee/pull/1118
+
 
 ## 📃 License
 
