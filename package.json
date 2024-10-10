@@ -1,6 +1,6 @@
 {
   "name": "expo-notifee-remote-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plugin to create a Notification Service extension in order to let Notifee mutate remote notifications",
   "main": "./lib/commonjs/index.js",
   "types": "./lib/typescript/commonjs/index.d.ts",
