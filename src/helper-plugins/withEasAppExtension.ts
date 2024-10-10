@@ -1,6 +1,6 @@
 import { ConfigPlugin } from '@expo/config-plugins';
 
-import { APPLE_APP_GROUP_SECURITY, EXTENSION_CONTROLLER_NAME } from '../constants';
+import { APPLE_APP_GROUP_SECURITY, EXTENSION_NAME } from '../constants';
 import { TExpoNotifeeRemote } from '../types';
 
 /**
@@ -10,10 +10,10 @@ import { TExpoNotifeeRemote } from '../types';
  * @link https://docs.expo.dev/build-reference/app-extensions/#managed-projects-experimental-support
  */
 const withEasAppExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGroup }) => {
-  const bundleIdentifier = config.ios?.bundleIdentifier + '.' + EXTENSION_CONTROLLER_NAME;
+  const bundleIdentifier = config.ios?.bundleIdentifier + '.' + EXTENSION_NAME;
 
   const expoAppExtension = {
-    targetName: EXTENSION_CONTROLLER_NAME,
+    targetName: EXTENSION_NAME,
     bundleIdentifier,
     entitlements: {},
   };
