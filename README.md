@@ -11,9 +11,13 @@
 - [x] [Sounds][21]
 
 ### Android
-- [ ] Icons
-- [ ] Sounds
+- [ ] [Icons][22]
+- [ ] [Sounds][23]
 
+[20]: https://notifee.app/react-native/docs/ios/remote-notification-support
+[21]: https://notifee.app/react-native/reference/notificationios#sound
+[22]: https://notifee.app/react-native/docs/android/appearance#icons
+[23]: https://notifee.app/react-native/docs/android/behaviour#custom-sound
 
 ##  🔧 Installation
 ### Yarn:
@@ -215,5 +219,4 @@ Adapted from:
 [35]: https://expo.dev/
 
 
-[20]: https://notifee.app/react-native/docs/ios/remote-notification-support
-[21]: https://notifee.app/react-native/reference/notificationios#sound
+
