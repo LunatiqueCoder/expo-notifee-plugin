@@ -5,8 +5,9 @@ import path from 'path';
 
 import { APPLE_APP_GROUP_SECURITY, EXTENSION_NAME } from '../constants';
 import { TExpoNotifeeRemote } from '../types';
+import { mergeWithConfigAppGroups } from '../utils';
 
-const withExtensionEntitlements: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGroup }) => {
+const withExtensionEntitlements: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGroups }) => {
   return withInfoPlist(config, newConfig => {
     const extensionEntitlementsPath = path.join(
       newConfig.modRequest.platformProjectRoot,
@@ -16,9 +17,7 @@ const withExtensionEntitlements: ConfigPlugin<TExpoNotifeeRemote> = (config, { a
 
     const notificationsExtensionEntitlements = {};
 
-    if (appGroup) {
-      notificationsExtensionEntitlements[APPLE_APP_GROUP_SECURITY] = [appGroup];
-    }
+    notificationsExtensionEntitlements[APPLE_APP_GROUP_SECURITY] = mergeWithConfigAppGroups(config, appGroups);
 
     fs.mkdirSync(path.dirname(extensionEntitlementsPath), {
       recursive: true,

@@ -1,21 +1,28 @@
-# 🖲 expo-notifee-remote-plugin
+# 🖲 expo-notifee-plugin
 
 [![Expo][34]][35]
 ![platforms][7]
 [![GitHub][9]][10]
 [![npm][13]][14]
 
-### Expo plugin that configures a Notification Service Extension to use Notifee for remote notifications
-> 📖 Please visit the [`Notifee's Docs: Remote Notification Support`][20] to see what this plugin does behind the scenes 
+## ⭐️ Features
+### iOS
+- [x] [Remote Notification Support][20]
+- [x] [Sounds][21]
+
+### Android
+- [ ] Icons
+- [ ] Sounds
+
 
 ##  🔧 Installation
 ### Yarn:
 ```
-yarn add expo-notifee-remote-plugin
+yarn add expo-notifee-plugin
 ```
 ### NPM:
 ```
-npm install --save expo-notifee-remote-plugin
+npm install --save expo-notifee-plugin
 ```
 
 ## 🎛 Setup
@@ -26,7 +33,7 @@ npm install --save expo-notifee-remote-plugin
   "expo": {
     "plugins": [
       [
-        "expo-notifee-remote-plugin",
+        "expo-notifee-plugin",
         {
           "developmentTeam": "MYDEVTEAMID"
         }
@@ -48,18 +55,15 @@ If you use [`app.config.ts`](https://docs.expo.dev/workflow/configuration/#using
 ```ts
 
 import { ExpoConfig } from 'expo/config';
-import { TExpoNotifeeRemote } from 'expo-notifee-remote-plugin';
+import { TExpoNotifeeRemote } from 'expo-notifee-plugin';
 
 const notifeeOptions: TExpoNotifeeRemote = {
   /**
-   * Apple App Group if applicable.
+   * Apple App Groups. If none specified, it will create one: `group.${bundleIdentifier}`.
+   * @example appGroups: ['com.app.company']
    * @link https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups
    */
-  appGroup?: string;
-  /** Custom target name of the NotificationServiceExtension
-   * @default NotifeeNotificationService
-   */
-  appTarget?: string;
+  appGroups: string[];
   developmentTeam: string;
   /**
    * An array containing the sound file names (including file extensions)
@@ -76,7 +80,7 @@ export const plugins: ExpoConfig['plugins'] = [
   'expo-localization',
   ['expo-screen-orientation', { initialOrientation: 'PORTRAIT_UP' }],
   '@react-native-firebase/app',
-  ['expo-notifee-remote-plugin', notifeeOptions],
+  ['expo-notifee-plugin', notifeeOptions],
 ];
 
 ```
@@ -202,9 +206,9 @@ Adapted from:
 
 [7]: https://img.shields.io/badge/platforms-iOS-brightgreen.svg?style=flat-square&colorB=191A17
 [9]: https://img.shields.io/github/license/LunatiqueCoder/luna
-[10]: https://github.com/LunatiqueCoder/expo-notifee-remote-plugin/blob/master/LICENSE
-[13]: https://img.shields.io/npm/v/expo-notifee-remote-plugin
-[14]: https://www.npmjs.com/package/expo-notifee-remote-plugin
+[10]: https://github.com/LunatiqueCoder/expo-notifee-plugin/blob/master/LICENSE
+[13]: https://img.shields.io/npm/v/expo-notifee-plugin
+[14]: https://www.npmjs.com/package/expo-notifee-plugin
 [28]: https://www.jetbrains.com/
 [33]: https://user-images.githubusercontent.com/55203625/213786907-b95dfb4b-08bf-4449-a055-72edf401da23.png
 [34]: https://img.shields.io/badge/-Expo-282C34?style=flat-square&logo=expo&logoColor=#D04A37
@@ -212,3 +216,4 @@ Adapted from:
 
 
 [20]: https://notifee.app/react-native/docs/ios/remote-notification-support
+[21]: https://notifee.app/react-native/reference/notificationios#sound

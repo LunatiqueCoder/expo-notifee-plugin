@@ -1,6 +1,5 @@
 import { ConfigPlugin, withPlugins } from '@expo/config-plugins';
 
-import { EXTENSION_CONTROLLER_NAME } from './constants';
 import {
   withAppEntitlements,
   withEasAppExtension,
@@ -13,30 +12,22 @@ import {
 } from './helper-plugins';
 import { TExpoNotifeeRemote } from './types';
 
-const initialParams = {
-  appGroup: '',
-  appTarget: EXTENSION_CONTROLLER_NAME,
+const initialParams: TExpoNotifeeRemote = {
+  appGroups: [],
   developmentTeam: '',
   soundFiles: [],
   soundFilesPath: 'assets',
 };
 
 const withNotificationsExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, params = initialParams) => {
-  const {
-    appGroup,
-    appTarget = EXTENSION_CONTROLLER_NAME,
-    developmentTeam,
-    soundFiles = [],
-    soundFilesPath = 'assets',
-  } = params;
+  const { appGroups, developmentTeam, soundFiles = [], soundFilesPath = 'assets' } = params;
 
   if (!developmentTeam) {
     throw new Error('### NotifeeRemoteExtension Plugin Error: You need to provide Development Team');
   }
 
   const guardedParams: TExpoNotifeeRemote = {
-    appGroup,
-    appTarget,
+    appGroups,
     developmentTeam,
     soundFilesPath,
     soundFiles,

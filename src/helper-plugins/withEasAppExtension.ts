@@ -2,6 +2,7 @@ import { ConfigPlugin } from '@expo/config-plugins';
 
 import { APPLE_APP_GROUP_SECURITY, EXTENSION_NAME } from '../constants';
 import { TExpoNotifeeRemote } from '../types';
+import { mergeWithConfigAppGroups } from '../utils';
 
 /**
  * Makes it possible for EAS CLI to know what app extensions exist before the build starts
@@ -9,7 +10,7 @@ import { TExpoNotifeeRemote } from '../types';
  * the required credentials are generated and validated.
  * @link https://docs.expo.dev/build-reference/app-extensions/#managed-projects-experimental-support
  */
-const withEasAppExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGroup }) => {
+const withEasAppExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGroups }) => {
   const bundleIdentifier = config.ios?.bundleIdentifier + '.' + EXTENSION_NAME;
 
   const expoAppExtension = {
@@ -18,9 +19,7 @@ const withEasAppExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, { appGrou
     entitlements: {},
   };
 
-  if (appGroup) {
-    expoAppExtension.entitlements[APPLE_APP_GROUP_SECURITY] = [appGroup];
-  }
+  expoAppExtension.entitlements[APPLE_APP_GROUP_SECURITY] = mergeWithConfigAppGroups(config, appGroups);
 
   return {
     ...config,

@@ -1,13 +1,14 @@
 export type TExpoNotifeeRemote = {
   /**
-   * Apple App Group if applicable.
+   * @summary Apple App Groups
+   * @description Array of Apple App Groups. Merges with config from app.json: <br>
+   * `ios.entitlements['com.apple.security.application-groups']`
+   *
+   * Creates one of none provided.
+   * @example appGroups: ['group.app.bluesky']
    * @link https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups
    */
-  appGroup?: string;
-  /** Custom target name of the NotificationServiceExtension
-   * @default NotifeeNotificationService
-   */
-  appTarget?: string;
+  appGroups?: string[];
   developmentTeam: string;
   /**
    * An array containing the sound file names (including file extensions)
