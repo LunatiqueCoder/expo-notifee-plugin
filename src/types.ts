@@ -9,6 +9,18 @@ export type TExpoNotifeeRemote = {
    * @link https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_security_application-groups
    */
   appGroups?: string[];
+  /**
+   * @description
+   * Use a custom relative (from project root) path for the NotifeeNotificationService.
+   * - You can adapt `expo-notifee-plugin/ios/NotifeeNotificationService.swift`
+   * - Warning! It should be named `NotifeeNotificationService`! Doesn't matter if you use
+   * Swift or Objective-C!
+   *
+   * @examples
+   * - src/notifications/NotifeeNotificationService.swift
+   * - src/notifications/NotifeeNotificationService.m
+   */
+  customNotificationServicePath?: string;
   developmentTeam: string;
   /**
    * An array containing the sound file names (including file extensions)

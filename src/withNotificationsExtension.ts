@@ -20,17 +20,17 @@ const initialParams: TExpoNotifeeRemote = {
 };
 
 const withNotificationsExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, params = initialParams) => {
-  const { appGroups, developmentTeam, soundFiles = [], soundFilesPath = 'assets' } = params;
+  const { developmentTeam, soundFiles = [], soundFilesPath = 'assets', ...paramsWithDefaults } = params;
 
   if (!developmentTeam) {
     throw new Error('### NotifeeRemoteExtension Plugin Error: You need to provide Development Team');
   }
 
   const guardedParams: TExpoNotifeeRemote = {
-    appGroups,
     developmentTeam,
     soundFilesPath,
     soundFiles,
+    ...paramsWithDefaults,
   };
 
   return withPlugins(config, [
