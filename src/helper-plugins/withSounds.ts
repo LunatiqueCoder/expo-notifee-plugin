@@ -11,11 +11,13 @@ const withSounds: ConfigPlugin<TExpoNotifeeRemote> = (config, { soundFiles, soun
       const soundPath = path.join(newConfig.modRequest.projectRoot, soundFilesPath, file);
 
       const targetPath = path.join(newConfig.modRequest.platformProjectRoot, EXTENSION_NAME, file);
+      const baseFileTargetPath = path.join(newConfig.modRequest.platformProjectRoot, file);
 
       if (!fs.existsSync(path.dirname(targetPath))) {
         fs.mkdirSync(path.dirname(targetPath), { recursive: true });
       }
       fs.copyFileSync(soundPath, targetPath);
+      fs.copyFileSync(soundPath, baseFileTargetPath);
     }
 
     return newConfig;
