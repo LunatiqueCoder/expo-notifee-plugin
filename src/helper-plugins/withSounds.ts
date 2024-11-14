@@ -1,27 +1,52 @@
-import { ConfigPlugin, withXcodeProject } from '@expo/config-plugins';
-import fs from 'fs';
-import path from 'path';
+import { ConfigPlugin, IOSConfig, withXcodeProject, XcodeProject } from '@expo/config-plugins';
+import { copyFileSync } from 'fs';
+import { basename, resolve } from 'path';
 
-import { EXTENSION_NAME } from '../constants';
 import { TExpoNotifeeRemote } from '../types';
 
 const withSounds: ConfigPlugin<TExpoNotifeeRemote> = (config, { soundFiles, soundFilesPath }) => {
-  return withXcodeProject(config, newConfig => {
-    for (const file of soundFiles) {
-      const soundPath = path.join(newConfig.modRequest.projectRoot, soundFilesPath, file);
-
-      const targetPath = path.join(newConfig.modRequest.platformProjectRoot, EXTENSION_NAME, file);
-      const baseFileTargetPath = path.join(newConfig.modRequest.platformProjectRoot, file);
-
-      if (!fs.existsSync(path.dirname(targetPath))) {
-        fs.mkdirSync(path.dirname(targetPath), { recursive: true });
-      }
-      fs.copyFileSync(soundPath, targetPath);
-      fs.copyFileSync(soundPath, baseFileTargetPath);
-    }
-
-    return newConfig;
+  return withXcodeProject(config, config => {
+    setNotificationSounds(config.modRequest.projectRoot, {
+      sounds: soundFiles,
+      project: config.modResults,
+      projectName: config.modRequest.projectName,
+    });
+    return config;
   });
 };
+
+export function setNotificationSounds(
+  projectRoot: string,
+  { sounds, project, projectName }: { sounds: string[]; project: XcodeProject; projectName: string | undefined }
+): XcodeProject {
+  if (!projectName) {
+    throw new Error(`An error occurred while configuring iOS notifications. Unable to find iOS project name.`);
+  }
+  if (!Array.isArray(sounds)) {
+    throw new Error(
+      `An error occurred while configuring iOS notifications. Must provide an array of sound files in your app config, found ${typeof sounds}.`
+    );
+  }
+  const sourceRoot = IOSConfig.Paths.getSourceRoot(projectRoot);
+  for (const soundFileRelativePath of sounds) {
+    const fileName = basename(soundFileRelativePath);
+    const sourceFilepath = resolve(projectRoot, soundFileRelativePath);
+    const destinationFilepath = resolve(sourceRoot, fileName);
+
+    // Since it's possible that the filename is the same, but the
+    // file itself id different, let's copy it regardless
+    copyFileSync(sourceFilepath, destinationFilepath);
+    if (!project.hasFile(`${projectName}/${fileName}`)) {
+      project = IOSConfig.XcodeUtils.addResourceFileToGroup({
+        filepath: `${projectName}/${fileName}`,
+        groupName: projectName,
+        isBuildFile: true,
+        project,
+      });
+    }
+  }
+
+  return project;
+}
 
 export default withSounds;
