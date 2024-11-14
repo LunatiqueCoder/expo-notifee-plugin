@@ -8,6 +8,7 @@ const withSounds: ConfigPlugin<TExpoNotifeeRemote> = (config, { soundFiles, soun
   return withXcodeProject(config, config => {
     setNotificationSounds(config.modRequest.projectRoot, {
       sounds: soundFiles,
+      soundFilesPath,
       project: config.modResults,
       projectName: config.modRequest.projectName,
     });
@@ -17,7 +18,12 @@ const withSounds: ConfigPlugin<TExpoNotifeeRemote> = (config, { soundFiles, soun
 
 export function setNotificationSounds(
   projectRoot: string,
-  { sounds, project, projectName }: { sounds: string[]; project: XcodeProject; projectName: string | undefined }
+  {
+    sounds,
+    soundFilesPath,
+    project,
+    projectName,
+  }: { sounds: string[]; soundFilesPath: string; project: XcodeProject; projectName: string | undefined }
 ): XcodeProject {
   if (!projectName) {
     throw new Error(`An error occurred while configuring iOS notifications. Unable to find iOS project name.`);
@@ -30,7 +36,7 @@ export function setNotificationSounds(
   const sourceRoot = IOSConfig.Paths.getSourceRoot(projectRoot);
   for (const soundFileRelativePath of sounds) {
     const fileName = basename(soundFileRelativePath);
-    const sourceFilepath = resolve(projectRoot, soundFileRelativePath);
+    const sourceFilepath = resolve(projectRoot, soundFilesPath, soundFileRelativePath);
     const destinationFilepath = resolve(sourceRoot, fileName);
 
     // Since it's possible that the filename is the same, but the
