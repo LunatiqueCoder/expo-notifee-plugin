@@ -36,7 +36,7 @@ export function setNotificationSounds(
   const sourceRoot = IOSConfig.Paths.getSourceRoot(projectRoot);
   for (const soundFileRelativePath of sounds) {
     const fileName = basename(soundFileRelativePath);
-    const sourceFilepath = resolve(sourceRoot, soundFilesPath, soundFileRelativePath);
+    const sourceFilepath = resolve(projectRoot, soundFilesPath, soundFileRelativePath);
     const destinationFilepath = resolve(sourceRoot, fileName);
 
     // Since it's possible that the filename is the same, but the
