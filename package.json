@@ -27,7 +27,6 @@
   "author": "Ovidiu Cristescu <ovidiucristescu@software-space.com> (https://github.com/LunatiqueCoder)",
   "license": "MIT",
   "homepage": "https://github.com/LunatiqueCoder/expo-notifee-plugin#readme",
-  "dependencies": {},
   "devDependencies": {
     "@expo/config-plugins": "^8.0.10",
     "@types/react": "^18.0.25",
@@ -77,5 +76,6 @@
   "eslintIgnore": [
     "node_modules/",
     "lib/"
-  ]
+  ],
+  "packageManager": "yarn@4.5.1"
 }
