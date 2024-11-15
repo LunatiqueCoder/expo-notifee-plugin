@@ -10,6 +10,7 @@ import {
   withSounds,
   withXcodeTarget,
 } from './helper-plugins';
+import withAndroidResources from './helper-plugins/withAndroidResources';
 import { TExpoNotifeeRemote } from './types';
 
 const initialParams: TExpoNotifeeRemote = {
@@ -43,6 +44,9 @@ const withNotificationsExtension: ConfigPlugin<TExpoNotifeeRemote> = (config, pa
     [withNotifeeCorePod, guardedParams],
     [withSounds, guardedParams],
     [withXcodeTarget, guardedParams],
+
+    // ANDROID
+    [withAndroidResources, guardedParams],
   ]);
 };
 
