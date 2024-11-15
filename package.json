@@ -76,6 +76,5 @@
   "eslintIgnore": [
     "node_modules/",
     "lib/"
-  ],
-  "packageManager": "yarn@4.5.1"
+  ]
 }
